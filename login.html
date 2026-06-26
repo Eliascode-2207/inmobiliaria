@@ -3,14 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - PISTONZONE</title>
+    <title>Acceso - PISTONZONE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <style>
+        .auth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .auth-forms {
+            max-width: 100%; /* Permitir que ocupe el ancho de la columna del grid */
+        }
+        @media (max-width: 768px) {
+            .auth-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +41,6 @@
         <nav class="navbar">
 
             <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                <!-- Icono de un estilo tuerca/motor básico en SVG -->
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="3"></circle>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -29,19 +49,11 @@
             </a>
 
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Servicios.html" class="nav-link">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Productos.html" class="nav-link">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Contacto.html" class="nav-link">Contacto</a>
-                </li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                <li class="nav-item"><a href="Productos.html" class="nav-link">Productos</a></li>
+                <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link">Iniciar Sesión</a></li>
             </ul>
 
             <div class="hamburger">
@@ -53,68 +65,68 @@
         </nav>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL: Login/Registro -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
-        <section class="hero-video">
+        <section class="hero-video" style="height: auto; min-height: 90vh; display: flex; align-items: center; padding-top: 40px;">
             <video class="hero-video__bg" autoplay muted loop playsinline>
                 <source src="motovideo.mp4.mp4" type="video/mp4">
-                Tu navegador no soporta video HTML5.
             </video>
             <div class="hero-video__overlay"></div>
 
-            <div class="auth-container" style="position: relative; z-index: 2; height: auto; width: 100%;">
+            <div class="auth-grid">
+                
+                <!-- Formulario Inicio de Sesión -->
                 <div class="auth-forms">
-
-                <div class="auth-tabs">
-                    <button class="auth-tab active" onclick="mostrarFormulario('login')">Ingresar</button>
-                    <button class="auth-tab" onclick="mostrarFormulario('registro')">Registrarse</button>
+                    <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 30px; text-align: left;">¡Bienvenido de nuevo!</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">Inicia sesión para gestionar tus pedidos y ver ofertas exclusivas.</p>
+                    
+                    <form onsubmit="iniciarSesion(event)" class="contact-form">
+                        <div class="form-group">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Correo Electrónico</label>
+                            <input type="email" placeholder="tu@correo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Contraseña</label>
+                            <input type="password" placeholder="Tu contraseña" required>
+                        </div>
+                        <button type="submit" class="auth-submit">Entrar a mi cuenta</button>
+                    </form>
                 </div>
 
-                <!-- Formulario Inicio de Sesión -->
-                <form id="form-login" class="auth-form active" onsubmit="iniciarSesion(event)">
-                    <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 20px;">Iniciar Sesión</h2>
-                    <div class="form-group">
-                        <label>Correo Electrónico:</label>
-                        <input type="email" placeholder="tu@correo.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña:</label>
-                        <input type="password" placeholder="Ingresa tu contraseña" required>
-                    </div>
-                    <button type="submit" class="auth-submit">Entrar</button>
-                </form>
-
                 <!-- Formulario Registro -->
-                <form id="form-registro" class="auth-form" onsubmit="registrar(event)">
-                    <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 20px;">Crear Cuenta</h2>
-                    <div class="form-group">
-                        <label>Nombre Completo:</label>
-                        <input type="text" placeholder="Ej: Daniel Isaza" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Correo Electrónico:</label>
-                        <input type="email" placeholder="tu@correo.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña:</label>
-                        <input type="password" placeholder="Crea una contraseña" required>
-                    </div>
-                    <button type="submit" class="auth-submit">Registrarse</button>
-                </form>
+                <div class="auth-forms" style="border-color: rgba(0, 242, 254, 0.2);">
+                    <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 30px; text-align: left;">¿Eres nuevo aquí?</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">Regístrate en pocos segundos y accede a todo nuestro catálogo de repuestos.</p>
+                    
+                    <form onsubmit="registrar(event)" class="contact-form">
+                        <div class="form-group">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Nombre Completo</label>
+                            <input type="text" placeholder="Ej: Elias Montoya" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Correo Electrónico</label>
+                            <input type="email" placeholder="tu@correo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Contraseña</label>
+                            <input type="password" placeholder="Crea una contraseña segura" required>
+                        </div>
+                        <button type="submit" class="auth-submit" style="background: linear-gradient(90deg, var(--secondary), #4facfe);">Registrarme ahora</button>
+                    </form>
+                </div>
 
-            </div>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-bottom" style="border-top: none;"> <!-- Reducido el footer para que sea minimalista en el login -->
+        <div class="footer-bottom" style="padding: 20px;">
             © 2026 Pistonzone | Todos los derechos reservados
         </div>
     </footer>
 
-    <script src="script.js?v=1.0"></script>
+    <script src="script.js?v=1.1"></script>
 
 </body>
 
