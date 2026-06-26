@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos - PISTONZONE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>PISTON<span style="color: #3498db;">ZONE</span></span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                <li class="nav-item"><a href="Productos.html" class="nav-link">Productos</a></li>
+                <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <section class="seccion-portafolio" style="padding: 60px 20px; background-color: #0d1b2a;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h1 class="section-title" style="color: #ffffff; font-size: 2.5rem; text-transform: uppercase;">Portafolio de Productos</h1>
+                <p class="section-subtitle" style="color: #00f2fe; letter-spacing: 1px;">Repuestos premium para motos en Colombia</p>
+                <!-- Línea de adorno usando colores de tu propia marca -->
+                <div style="width: 80px; height: 3px; background: linear-gradient(to right, #4facfe, #00f2fe); margin: 0 auto; margin-top: 10px; border-radius: 5px;"></div>
+            </div>
+
+            <div class="portfolio-grid">
+                
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <span class="badge">Oferta</span>
+                    <div class="img-container">
+                        <img src="assets/img/kit.png" alt="Kit de arrastre motocicleta" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Compatible con AKT</span>
+                        <h3 class="product-title">Kit de Arrastre Racing NKD 125</h3>
+                        <p class="product-price">$ 55.000 COP <span class="old-price">$ 65.000</span></p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="img-container">
+                        <img src="assets/img/pastillas.png" alt="Frenos para moto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Compatible con Bajaj / Auteco</span>
+                        <h3 class="product-title">Pastillas de Freno NS 200 (Delanteras)</h3>
+                        <p class="product-price">$ 42.000 COP</p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <span class="badge badge-new">Nuevo</span>
+                    <div class="img-container">
+                        <img src="assets/img/llanta.png" alt="Llanta para motocicleta" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Control / Universal</span>
+                        <h3 class="product-title">Llanta Trasera 90/90-18 Control</h3>
+                        <p class="product-price">$ 120.000 COP</p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="img-container">
+                        <img src="assets/img/aceite.png" alt="Aceite para motor" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Mobil Multigrado</span>
+                        <h3 class="product-title">Aceite Mobil Super Moto 4T 20W-50</h3>
+                        <p class="product-price">$ 32.000 COP</p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="product-card">
+                    <div class="img-container">
+                        <img src="assets/img/bateria.png" alt="Motor y sistema electrico" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Compatible con Hero / TVS</span>
+                        <h3 class="product-title">Batería Seca de Gel 12V 5AH</h3>
+                        <p class="product-price">$ 85.000 COP</p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="product-card">
+                    <div class="img-container">
+                        <img src="assets/img/espejos.png" alt="Manubrio de motocicleta" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-brand">Compatible con Incolmotos Yamaha</span>
+                        <h3 class="product-title">Espejos Retrovisores FZ 2.0 / 2.5</h3>
+                        <p class="product-price">$ 45.000 COP</p>
+                        <button class="add-cart-btn" onclick="alert('Añadido al carrito de compras')">Comprar Ahora</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">PISTONZONE</div>
+                <p class="footer-desc">Especialistas en repuestos para motos.</p>
+            </div>
+            <div class="footer-links">
+                <h4 class="footer-title">Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Servicios.html">Servicios</a></li>
+                   <li><a href="Productos.html">Productos</a></li>
+                    <li><a href="Contacto.html">Contacto</a></li>
+                     <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 class="footer-title">Contacto</h4>
+                <p>Email: ventas@pistonzone.com</p>
+                <p>Teléfono: +57 300 000 0000</p>
+                <p>Colombia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Pistonzone | Todos los derechos reservados
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

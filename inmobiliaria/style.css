@@ -1,0 +1,673 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+/* Reset básico para limpiar márgenes del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Seccion Bienvenida */
+.bienvenida {
+    background-color: #000;
+    color: #f1c40f;
+    padding: 20px;
+}
+
+/* html y body al 100% de altura para que el footer pueda pegarse al fondo */
+html,
+body {
+    height: 100%;
+}
+
+/* Convertimos body en un contenedor flex en columna
+   Esto empuja el footer hacia abajo aunque haya poco contenido */
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa al menos toda la pantalla */
+}
+
+/* ========================== */
+/* NUEVO: main-content crece para ocupar el espacio disponible
+   entre el header y el footer (necesario para el layout sticky-footer) */
+/* ========================== */
+.main-content {
+    flex: 1; /* Empuja el footer al fondo siempre */
+}
+
+
+/* ================================================ */
+/* Estilos del Header / Navbar                      */
+/* ================================================ */
+
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0 1.5rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #3498db;
+}
+
+/* Menú Hamburguesa (oculto por defecto en escritorio) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Responsividad: Pantallas móviles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: #2c3e50;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+}
+
+
+/* ================================================ */
+/* Estilos del Footer                               */
+/* ================================================ */
+
+.footer {
+    background-color: #1a252f;
+    color: #bdc3c7;
+    margin-top: auto; /* Empuja el footer al fondo cuando hay poco contenido */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.footer-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.footer-desc {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 220px;
+}
+
+.footer-title {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid #2c3e50;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+/* Responsividad del footer en móvil */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-desc {
+        max-width: 100%;
+    }
+}
+
+
+/* ================================================ */
+/* NUEVO: Estilos compartidos de secciones          */
+/* Usados en Servicios, Portafolio, etc.            */
+/* ================================================ */
+
+/* Títulos de sección reutilizables */
+.section-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Subtítulo debajo del título de sección */
+.section-subtitle {
+    font-size: 1rem;
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+
+/* ================================================ */
+/* NUEVO: Estilos del Hero con Video (index.html)   */
+/* ================================================ */
+
+/* Sección hero que ocupa toda la pantalla */
+.hero-video {
+    position: relative;       /* Necesario para posicionar el overlay y el contenido encima del video */
+    width: 100%;
+    height: calc(100vh - 70px); /* Resta la altura del navbar para que no se solape */
+    overflow: hidden;           /* Recorta el video si sobresale del contenedor */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Video de fondo: cubre todo el contenedor */
+.hero-video__bg {
+    position: absolute;   /* Se posiciona respecto al .hero-video */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* Cubre el área sin deformar el video */
+    z-index: 0;           /* Queda detrás del overlay y del contenido */
+}
+
+/* Capa semi-transparente sobre el video para oscurecerlo
+   y mejorar la legibilidad del texto blanco */
+.hero-video__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% de opacidad negra */
+    z-index: 1;                            /* Encima del video, debajo del contenido */
+}
+
+/* Contenido de texto centrado sobre el video */
+.hero-video__content {
+    position: relative;
+    z-index: 2;           /* Encima del overlay y del video */
+    text-align: center;
+    color: #fff;
+    padding: 0 1.5rem;
+}
+
+/* Título principal del hero */
+.hero-video__title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.7); /* Sombra para mayor legibilidad */
+}
+
+/* Subtítulo del hero */
+.hero-video__subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    opacity: 1;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Botón de llamada a la acción (CTA) del hero */
+.hero-video__btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.3s;
+    border: none;
+}
+
+/* Efecto hover del botón CTA */
+.hero-video__btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05); /* Sube ligeramente el botón */
+}
+
+/* Responsividad del hero en móvil */
+@media (max-width: 768px) {
+    .hero-video__title {
+        font-size: 2rem;
+    }
+    .hero-video__subtitle {
+        font-size: 1rem;
+    }
+}
+
+
+.login-body {
+font-family: Arial;
+margin: 0;
+background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* NAV */
+.header {
+background: #0d1b2a;
+padding: 15px;
+}
+
+.logo {
+color: white;
+font-size: 20px;
+text-decoration: none;
+}
+
+/* CONTENEDOR */
+.auth-container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 90vh;
+}
+
+/* CAJA */
+.auth-forms {
+background: white;
+padding: 30px;
+border-radius: 10px;
+width: 300px;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* TABS */
+.auth-tabs {
+display: flex;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.auth-tab {
+flex: 1;
+padding: 10px;
+border: none;
+cursor: pointer;
+background: #ccc;
+}
+
+.auth-tab.active {
+background: #4facfe;
+color: white;
+}
+
+/* FORMULARIOS */
+.auth-form {
+display: none;
+}
+
+.auth-form.active {
+display: block;
+}
+
+/* INPUTS */
+.form-group {
+margin-bottom: 15px;
+}
+
+input {
+width: 100%;
+padding: 8px;
+}
+
+/* BOTÓN */
+.auth-submit {
+width: 100%;
+padding: 10px;
+background: #4facfe;
+border: none;
+color: white;
+cursor: pointer;
+}
+
+/* ================================================ */
+/* ESTILOS DE SERVICIOS (MODERNO)                   */
+/* ================================================ */
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: #1a252f;
+    border-radius: 12px;
+    padding: 30px 20px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    border: 1px solid #2c3e50;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15); /* Efecto de brillo acorde al portafolio */
+    border: 1px solid #4facfe;
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(79, 172, 254, 0.5)); /* Leve brillo al emoji */
+}
+
+.service-title {
+    color: #ffffff;
+    font-size: 1.35rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-desc {
+    color: #bdc3c7;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ================================================ */
+/* ESTILOS DE PORTAFOLIO DE PRODUCTOS (MODERNO)     */
+/* ================================================ */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: #1a252f;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #2c3e50;
+    position: relative; /* Necesario para ubicar los badges de "oferta" o "nuevo" */
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15); /* Efecto de brillo de marca en hover */
+    border: 1px solid #4facfe;
+}
+
+/* Contenedor estricto para que la imagen haga zoom sin regarse hacia afuera */
+.img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #0d1b2a;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto super profesional de Zoom al hacer hover */
+.product-card:hover .product-img {
+    transform: scale(1.1); 
+}
+
+/* Etiquetas destacadas (Badges) */
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #e74c3c;
+    color: white;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.4);
+}
+
+.badge-new {
+    background: #27ae60;
+    box-shadow: 0 2px 10px rgba(39, 174, 96, 0.4);
+}
+
+.product-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-brand {
+    font-size: 0.8rem;
+    color: #4facfe; /* Azul de tu marca */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    color: #f1c40f; /* Amarillo vibrante para que resalte en modo oscuro */
+    font-weight: bold;
+    margin-top: auto; 
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.old-price {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    text-decoration: line-through;
+    font-weight: normal;
+}
+
+.add-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.add-cart-btn:hover {
+    opacity: 0.85;
+    transform: scale(1.02); /* Boton sube ligeramente de tamaño al poner el raton */
+}
+
+/* ================================================ */
+/* ESTILOS DE CONTACTO (MODERNO)                    */
+/* ================================================ */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* En pantallas pequeñas se apila uno bajo el otro */
+}
+
+.contact-info, .contact-form-container {
+    background-color: #1a252f;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2c3e50;
+    flex: 1; /* Ocupan 50% cada uno */
+    min-width: 320px;
+}
+
+.contact-info h3, .contact-form-container h3 {
+    color: #4facfe;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #bdc3c7;
+    font-size: 1.05rem;
+}
+
+.contact-item span {
+    font-size: 1.8rem;
+    color: #00f2fe;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Campos de entrada específicos para la página de contacto (sin dañar login) */
+.contact-form .form-group {
+    margin: 0;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #34495e;
+    background-color: #0d1b2a;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #7f8c8d;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
