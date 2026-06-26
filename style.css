@@ -436,7 +436,7 @@ cursor: pointer;
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15); /* Efecto de brillo acorde al portafolio */
+    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15); /* Efecto de brillo acorde al diseño */
     border: 1px solid #4facfe;
 }
 
@@ -460,7 +460,7 @@ cursor: pointer;
 }
 
 /* ================================================ */
-/* ESTILOS DE PORTAFOLIO DE PRODUCTOS (MODERNO)     */
+/* ESTILOS DE PRODUCTOS (MODERNO)     */
 /* ================================================ */
 .portfolio-grid {
     display: grid;
