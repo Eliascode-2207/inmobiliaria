@@ -70,9 +70,9 @@ if (contactForm && window.location.pathname.includes("Contacto")) {
         btn.disabled = true;
 
         const formData = {
-            nombre: e.target.querySelector('input[placeholder*="Nombre"]').value,
-            email: e.target.querySelector('input[placeholder*="Correo"]').value,
-            asunto: e.target.querySelector('input[placeholder*="repuesto"]').value,
+            nombre: e.target.querySelector('input[type="text"]').value,
+            email: e.target.querySelector('input[type="email"]').value,
+            asunto: e.target.querySelectorAll('input[type="text"]')[1].value, // El segundo input text es el asunto
             mensaje: e.target.querySelector('textarea').value
         };
 
@@ -91,17 +91,17 @@ if (contactForm && window.location.pathname.includes("Contacto")) {
     };
 }
 
-// --- 6. Base de Datos: Gestión de Login / Registro ---
+// --- 6. Base de Datos: Gestión de Iniciar Sesión / Registro ---
 async function iniciarSesion(e) {
     e.preventDefault();
-    const email = e.target.querySelector('input[type="email"]').value;
-    const password = e.target.querySelector('input[type="password"]').value;
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
     const { data, error } = await _supabase
         .from('perfiles_usuarios')
         .select('*')
         .eq('email', email)
-        .eq('password_hash', password) // Nota: En producción usar hashing real
+        .eq('password_hash', password)
         .single();
 
     if (data) {
@@ -118,22 +118,27 @@ async function registrar(e) {
     btn.innerText = "Registrando...";
     btn.disabled = true;
 
-    const userData = {
-        nombre: e.target.querySelector('input[placeholder*="Nombre"]').value,
-        email: e.target.querySelector('input[placeholder*="Correo"]').value,
-        password_hash: e.target.querySelector('input[placeholder*="contraseña"]').value
-    };
+    try {
+        const userData = {
+            nombre: document.getElementById("reg-nombre").value,
+            email: document.getElementById("reg-email").value,
+            password_hash: document.getElementById("reg-password").value
+        };
 
-    const { data, error } = await _supabase
-        .from('perfiles_usuarios')
-        .insert([userData]);
+        const { data, error } = await _supabase
+            .from('perfiles_usuarios')
+            .insert([userData]);
 
-    if (error) {
-        alert("Error al registrar: " + error.message);
-    } else {
-        alert("¡Registro exitoso! Ya estás en nuestra base de datos.");
-        e.target.reset();
+        if (error) {
+            alert("Error al registrar: " + error.message);
+        } else {
+            alert("¡Registro exitoso! Ya estás en nuestra base de datos.");
+            e.target.reset();
+        }
+    } catch (err) {
+        alert("Ocurrió un error inesperado: " + err.message);
     }
+    
     btn.innerText = "Registrarme ahora";
     btn.disabled = false;
 }

@@ -84,11 +84,11 @@
                     <form onsubmit="iniciarSesion(event)" class="contact-form">
                         <div class="form-group">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Correo Electrónico</label>
-                            <input type="email" placeholder="tu@correo.com" required>
+                            <input type="email" id="login-email" placeholder="tu@correo.com" required>
                         </div>
                         <div class="form-group">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Contraseña</label>
-                            <input type="password" placeholder="Tu contraseña" required>
+                            <input type="password" id="login-password" placeholder="Tu contraseña" required>
                         </div>
                         <button type="submit" class="auth-submit">Entrar a mi cuenta</button>
                     </form>
@@ -102,15 +102,15 @@
                     <form onsubmit="registrar(event)" class="contact-form">
                         <div class="form-group">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Nombre Completo</label>
-                            <input type="text" placeholder="Ej: Elias Montoya" required>
+                            <input type="text" id="reg-nombre" placeholder="Ej: Elias Montoya" required>
                         </div>
                         <div class="form-group">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Correo Electrónico</label>
-                            <input type="email" placeholder="tu@correo.com" required>
+                            <input type="email" id="reg-email" placeholder="tu@correo.com" required>
                         </div>
                         <div class="form-group">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Contraseña</label>
-                            <input type="password" placeholder="Crea una contraseña segura" required>
+                            <input type="password" id="reg-password" placeholder="Crea una contraseña segura" required>
                         </div>
                         <button type="submit" class="auth-submit" style="background: linear-gradient(90deg, var(--secondary), #4facfe);">Registrarme ahora</button>
                     </form>
