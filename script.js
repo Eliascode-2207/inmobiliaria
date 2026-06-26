@@ -1,3 +1,8 @@
+// Configuración de Supabase
+const SUPABASE_URL = "https://ddgclumgrixqalnvrzzz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_vtxXtfI0fuivgNMsChXaWQ_3e9KrVsj";
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // Selección de elementos
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
@@ -10,8 +15,6 @@ if (hamburger) {
         hamburger.classList.toggle("active");
         navMenu.classList.toggle("active");
     });
-
-    // Cerrar menú al hacer clic en un enlace (móvil)
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
             hamburger.classList.remove("active");
@@ -29,7 +32,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// --- 3. Marcar Link Activo Automáticamente ---
+// --- 3. Marcar Link Activo ---
 const currentPath = window.location.pathname;
 navLinks.forEach(link => {
     const linkPath = link.getAttribute("href");
@@ -39,21 +42,17 @@ navLinks.forEach(link => {
 });
 
 // --- 4. Animación de Aparición (Scroll Reveal) ---
-const observerOptions = {
-    threshold: 0.1
-};
-
+const observerOptions = { threshold: 0.1 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = "1";
             entry.target.style.transform = "translateY(0)";
-            observer.unobserve(entry.target); // Dejar de observar una vez animado
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Aplicar a tarjetas de servicios y productos
 document.querySelectorAll('.service-card, .product-card, .contact-info, .contact-form-container').forEach(card => {
     card.style.opacity = "0";
     card.style.transform = "translateY(30px)";
@@ -61,35 +60,80 @@ document.querySelectorAll('.service-card, .product-card, .contact-info, .contact
     observer.observe(card);
 });
 
-// --- 5. Lógica para el Login / Registro ---
-function mostrarFormulario(tipo) {
-    const formLogin = document.getElementById('form-login');
-    const formRegistro = document.getElementById('form-registro');
-    const tabs = document.querySelectorAll('.auth-tab');
+// --- 5. Base de Datos: Guardar Mensajes de Contacto ---
+const contactForm = document.querySelector(".contact-form");
+if (contactForm && window.location.pathname.includes("Contacto")) {
+    contactForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector("button");
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
 
-    if (!formLogin || !formRegistro) return;
+        const formData = {
+            nombre: e.target.querySelector('input[placeholder*="Nombre"]').value,
+            email: e.target.querySelector('input[placeholder*="Correo"]').value,
+            asunto: e.target.querySelector('input[placeholder*="repuesto"]').value,
+            mensaje: e.target.querySelector('textarea').value
+        };
 
-    if (tipo === 'login') {
-        formLogin.classList.add('active');
-        formRegistro.classList.remove('active');
-        tabs[0].classList.add('active');
-        tabs[1].classList.remove('active');
+        const { data, error } = await _supabase
+            .from('mensajes_contacto')
+            .insert([formData]);
+
+        if (error) {
+            alert("Error al enviar el mensaje: " + error.message);
+        } else {
+            alert("¡Mensaje guardado en la base de datos con éxito!");
+            contactForm.reset();
+        }
+        btn.innerText = "Enviar Mensaje";
+        btn.disabled = false;
+    };
+}
+
+// --- 6. Base de Datos: Gestión de Login / Registro ---
+async function iniciarSesion(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const password = e.target.querySelector('input[type="password"]').value;
+
+    const { data, error } = await _supabase
+        .from('perfiles_usuarios')
+        .select('*')
+        .eq('email', email)
+        .eq('password_hash', password) // Nota: En producción usar hashing real
+        .single();
+
+    if (data) {
+        alert("¡Bienvenido caballero! Sesión iniciada correctamente.");
+        window.location.href = "index.html";
     } else {
-        formLogin.classList.remove('active');
-        formRegistro.classList.add('active');
-        tabs[0].classList.remove('active');
-        tabs[1].classList.add('active');
+        alert("Credenciales incorrectas o usuario no encontrado.");
     }
 }
 
-function iniciarSesion(e) {
+async function registrar(e) {
     e.preventDefault();
-    alert("¡Inicio de sesión exitoso! Bienvenido a Pistonzone.");
-    window.location.href = "index.html";
-}
+    const btn = e.target.querySelector("button");
+    btn.innerText = "Registrando...";
+    btn.disabled = true;
 
-function registrar(e) {
-    e.preventDefault();
-    alert("¡Cuenta creada correctamente! Ahora puedes iniciar sesión.");
-    mostrarFormulario('login');
+    const userData = {
+        nombre: e.target.querySelector('input[placeholder*="Nombre"]').value,
+        email: e.target.querySelector('input[placeholder*="Correo"]').value,
+        password_hash: e.target.querySelector('input[placeholder*="contraseña"]').value
+    };
+
+    const { data, error } = await _supabase
+        .from('perfiles_usuarios')
+        .insert([userData]);
+
+    if (error) {
+        alert("Error al registrar: " + error.message);
+    } else {
+        alert("¡Registro exitoso! Ya estás en nuestra base de datos.");
+        e.target.reset();
+    }
+    btn.innerText = "Registrarme ahora";
+    btn.disabled = false;
 }
